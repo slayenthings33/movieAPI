@@ -1,0 +1,20 @@
+h1 Movie Form
+form(action='/api/films', method='post')
+  div
+    label(for='title') Movie title: 
+    br
+    input#titleInput(type='text')
+  br
+  div
+    label(for='director') Director:
+    br
+    input#directorInput(type='text')
+  br
+  div
+    label(for='year') Year released:
+    br
+    input#yearInput(type='text')
+  br
+  div
+    input(type='submitForm', value='submit')
+    input(type='resetForm', value='reset')
