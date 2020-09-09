@@ -25,7 +25,7 @@ app.get('/', function (req, res) {
   res.render('home', { message: 'Welcome to my Movie Database!!'});
 });
 
-app.get("/api/form", function(req,res) {
+app.get("/form", function(req,res) {
   res.render("form", {})
 })
 

@@ -1,3 +1,8 @@
+html
+  head
+nav
+  a(href='/') Home
+  a(href='/form') Form
 h1 Movie Form
 form(action='/api/films', method='post')
   div
@@ -16,5 +21,5 @@ form(action='/api/films', method='post')
     input#yearInput(type='text')
   br
   div
-    input(type='submitForm', value='submit')
-    input(type='resetForm', value='reset')
+    button#submitForm(type='submit') Submit
+    button#resetForm(type='submit') Reset

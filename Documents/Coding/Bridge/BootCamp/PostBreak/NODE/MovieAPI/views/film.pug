@@ -2,8 +2,11 @@ html
   head
     title= movieName
   body
-    h1= movie
-    p= "You searched for: "+movie
-    p= "The film was released in "+released 
-    p= "The director is: "+director
-    img(src=route)
+    nav
+    a(href='/home') Home
+    a(href='/form') Form
+  h1= movie
+  p= "You searched for: "+movie
+  p= "The film was released in "+released 
+  p= "The director is: "+director
+  img(src=route)

@@ -2,8 +2,14 @@ html
   head
     title= title
   body
+  nav
+    a(href='/') Home
+
+    a(href='/form') Form
     h1= message
-    input#userInput(type='search')
+    p= "Search for a movie title:"
+    input#userInput(type='search') 
+    br
     input#searchButton(type='submit')
     button#homeButton(type='submit') Home
     script(src='script.js' defer)
