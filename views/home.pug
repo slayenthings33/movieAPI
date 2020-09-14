@@ -1,0 +1,21 @@
+html
+  head
+    title= title
+    link(rel='stylesheet', href='../css/index.css')
+  body
+    nav
+      a(href='/') Home
+      a(href='/form') Form
+    section#container
+      h1= message
+      #searchBar
+        p= "Search for a movie by title:"
+        input#userInput(type='text') 
+      br
+      #homeButtons
+        button#searchButton(type='submit') Search
+        button#homeButton(type='submit') Home
+    h2 Your favorite films:
+    #faveFilmSect
+      script(src="script.js" defer)
+

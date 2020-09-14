@@ -1,0 +1,87 @@
+/**********GENERAL STYLING***********/
+
+* a {
+    text-decoration: none;
+}
+
+body html {
+    margin: 0;
+    padding: 0;
+}
+body{
+    height: 100%;
+    width: fit-content;
+    margin: 0px;
+    background-color: aqua;
+}
+#container {
+    height: 200px;
+    min-width: fit-content;
+    margin: 0px, 20px;
+    padding: 30px;
+    background-color: blueviolet ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/*************NAV BAR**********/
+
+nav {
+    height: 60px;
+    width: 100%;
+    padding: 20px;
+    border: red dotted 1px;
+    /* background-color: rosybrown; */
+}
+nav a {
+    height: 80px;
+    width: 100px;
+    padding: 10px;
+    border: black 1px solid;
+    border-radius: 25px;
+}
+
+/************SEARCH SECTION************/
+
+#searchBar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+#userInput {
+    width: 300px;
+    height: 50px;
+    border: 1px black solid;
+    border-radius: 20px;
+}
+#homeButtons {
+    display: flex;
+    justify-content: space-evenly;
+}
+#container button {
+    width: 70px;
+    height: 50px;
+    border-radius: 10px;
+}
+#searchBar p {
+    font-size: 25px;
+}
+
+/************FAVE SECTION************/
+#faveItem {
+    height: 100px;
+    width: 60%;
+    padding: 10px;
+    /* border: black dotted 1px; */
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+}
+#faveFilmSect{
+    margin: 20px;
+    padding: 10px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+}

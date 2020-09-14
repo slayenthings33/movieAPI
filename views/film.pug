@@ -1,0 +1,24 @@
+head
+  title
+  script(src='script.js', defer='defer')
+nav
+  a(href='/') Home
+  a(href='/form') Form
+h1=movie
+p
+  | You searched for 
+  span#movie=movie
+p
+  | The film was released in 
+  span#released=released
+p
+  | The director is 
+  span#director=director
+p
+  | This film received a rating of 
+  span#rating=rating
+img#poster(src=route)
+br
+br
+button#favoriteButton(type='submit') Favorite
+script(src='script2.js')
