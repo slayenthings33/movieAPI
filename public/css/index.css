@@ -84,4 +84,8 @@ nav a {
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
+    background-image: url("filmLLight.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }

@@ -28,5 +28,6 @@ function uploadLocal() {
     }
     array.push(newMovie); //add our JSON to array
     localStorage.setItem("faveFilms",JSON.stringify(array)) //save our array to local
-    }
+    goHome();
+  }
 }
