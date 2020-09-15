@@ -36,7 +36,7 @@ function showFaves() {
   let parsedFaves = JSON.parse(localStorage.getItem("faveFilms"))
   for(let i=0; i<parsedFaves.length; i++) {
     if(parsedFaves !== null) { 
-      let faveList = `<div id="faveItem"><div id="titleRow"><b>Title: </b> ${parsedFaves[i].Title}</div> <div id="directedRow"><b>Directed by: </b>${parsedFaves[i].Director}</div> <div id="releasedRow"><b>Released: </b> ${parsedFaves[i].Released}</div> <div id="faveButns${i}"><button id="detailsBtn${i}" onlick="getDetails">Details</button><button id="editBtn${i}" onclick="editFave">Edit</button><button id="deleteBtn${i}" onclick="deleteFilm(${i})">Erase</button></div></div>`;
+      let faveList = `<div id="faveItem"><div id="titleRow"><b>Title: </b> ${parsedFaves[i].Title}</div> <div id="directedRow"><b>Directed by: </b>${parsedFaves[i].Director}</div> <div id="releasedRow"><b>Released: </b> ${parsedFaves[i].Released}</div> <div id="faveButns${i}"><button id="detailsBtn${i}" onlick="getDetails">Details</button><button id="editBtn${i}" onclick="editFave">Edit</button><button id="deleteBtn${i}" onclick="deleteFilm(${i})">Delete</button></div></div>`;
       faveSect.innerHTML += faveList ;
     } else {
       faveSect.innerHTML = "";
@@ -49,24 +49,22 @@ showFaves();
 // deleteBtn.addEventListener("click", eraseFilm);
 
 function deleteFilm(pos) {
+  // console.log(typeof(localStorage.getItem("faveFilms"))); <stored as string
   let faveFilmsParsed = JSON.parse(localStorage.getItem("faveFilms")); 
-  //Parse our stringified localStorage
-  for(let i=0;i<localStorage.length;i++) {
-    let toDelete = faveFilmsParsed[pos];
-    console.log(toDelete);
-    if(toDelete.Title == pos){
-      localStorage.removeItem(faveFilmsParsed[i]);
-    }
-    console.log(faveFilmsParsed[i]);
+  // console.log(typeof(faveFilmsParsed)); <- converted to object
+  faveFilmsParsed.splice(pos,1);
+  let verifyDelete = confirm("Are you sure you want to remove this film from your list of Favorites?")
+  if(verifyDelete) {
+    localStorage.setItem("faveFilms", JSON.stringify(faveFilmsParsed));
+    window.location.reload();  
   }
-  faveSect -= faveFilmsParsed[pos];
 }
+
 
 // detailsBtn.addEventListener("click", getDetails);
 function getDetails() {
   if(detailsBtn !== null) {
     console.log("function getDetails")
-    
   }
 }
 
