@@ -17,15 +17,18 @@ app.set("view engine", "pug") //View generating motor
 
 app.use(express.static('public'));
 app.use("/films",express.static('public'));
+app.use("/details", express.static('public'));
 
 // app.get("/", movie.getHome)
 app.get('/', function (req, res) {
   res.render('home', { message: 'Welcome to MovieSpot, your very own personal Movie Database!'});
 });
-
 app.get("/form", function(req,res) {
   res.render("form", {})
 })
+app.get("/details/:id", movie.getDetails);
+// app.get("*", films.getError);
+
 
 
 //  when user enters movie title, call function getTitle
@@ -37,10 +40,11 @@ app.get('/films/:title', function (req, res) { //API fetch
     return response.json();
   }) 
   .then(function(data) {
+    console.log(data);
     res.render('film', {  //render film.pug with this data from API
-     movieName:data.Title,movie: data.Title, released: data.Released, director: data.Director, rating: data.Ratings[0].Value, route: data.Poster});
+     movieName:data.Title,movie: data.Title, released: data.Released, director: data.Director, rating: data.Ratings[0].Value, route: data.Poster, actors: data.Actors, rated: data.Rated});
       
-    });
+    }).catch(console.log("error"))
   });
 
 app.listen(port, () => {
