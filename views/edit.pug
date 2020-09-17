@@ -1,0 +1,39 @@
+body
+nav
+  a(href='/') Home
+  a(href='/form') Form
+   title=title
+   p#id=id
+  form(action='/films/save', method='POST')
+    p
+      | Title: 
+      input#movie(type='text', name='title', value=title)
+      br
+      br
+      |          Director: 
+      input#director(type='text', name='year', value=director)
+      br
+      br
+      |          Rating: 
+      input#rating(type='text', name='raint', value=rating)
+      br
+      br
+      |          Actors: 
+      input#actors(type='text', name='actors', value=actors)
+      br
+      br
+      |          Released: 
+      input#released(type='text', name='released', value=release)
+      br
+      br
+      |          Score: 
+      input#score(type='text', name='score', value=score)
+      br
+      br
+      |          Poster: 
+      input#poster(type='text', name='poster', value=poster)
+      br
+      br
+    input#editFave(type='submit', value='Save')
+  
+  script(src='script.js')

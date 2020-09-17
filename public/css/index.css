@@ -4,25 +4,31 @@
     text-decoration: none;
 }
 
-body html {
-    margin: 0;
-    padding: 0;
-}
 body{
     height: 100%;
     width: fit-content;
     margin: 0px;
-    background-color: aqua;
+    background-color: rgb(175,0,42);
+    display: flex;
+    flex-direction: column;
 }
 #container {
     height: 200px;
-    min-width: fit-content;
+    width: 100%;
     margin: 0px, 20px;
     padding: 30px;
-    background-color: blueviolet ;
+    background-image: url(../img/cinemaSeats.jpg);
+    background-size: auto;
+    background-repeat: no-repeat;
+    border: solid black 2px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    /* font-family: Bangers; */
+    color: white;
 }
 
 /*************NAV BAR**********/
@@ -31,24 +37,34 @@ nav {
     height: 60px;
     width: 100%;
     padding: 20px;
-    border: red dotted 1px;
-    /* background-color: rosybrown; */
+    border: aqua dotted 1px;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    justify-content: space-around;
+    
 }
 nav a {
-    height: 80px;
+    height: 40px;
     width: 100px;
     padding: 10px;
     border: black 1px solid;
     border-radius: 25px;
+    background-color: cadetblue;
+    text-align: center;
+    padding-top: 20px;
+    font-size: 20px;
+    
 }
 
 /************SEARCH SECTION************/
 
-#searchBar{
+/* #searchBar{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-}
+    background-color: yellowgreen;
+} */
 #userInput {
     width: 300px;
     height: 50px;
@@ -57,7 +73,8 @@ nav a {
 }
 #homeButtons {
     display: flex;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
+    
 }
 #container button {
     width: 70px;
@@ -69,6 +86,20 @@ nav a {
 }
 
 /************FAVE SECTION************/
+#faveFilmSect{
+    margin: 20px;
+    padding: 10px;
+    height: 1000px;
+    width: 70%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    text-align: center;
+    /* background-image: url("../img/filmLLight.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover; */
+}
 #faveItem {
     height: 100px;
     width: 60%;
@@ -78,14 +109,6 @@ nav a {
     display: flex;
     flex-direction: column;
 }
-#faveFilmSect{
-    margin: 20px;
-    padding: 10px;
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    /* background-image: url("../img/filmLLight.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover; */
-}
+/*************@FONT FACE*************/
+
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');

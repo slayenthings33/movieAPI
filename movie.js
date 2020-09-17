@@ -19,7 +19,6 @@ exports.getTitle = (req,res) => {
 };
 //module to display in details.pug
 exports.getDetails = (req,res) => {
-    console.log(req.query.src);
     res.render("details", {
         movie: req.query.title,
         poster: req.query.src,  //variable in pug : name in server.js generated url
@@ -30,4 +29,27 @@ exports.getDetails = (req,res) => {
         released: req.query.released,
         rating: req.query.rating
     })
+}
+exports.editFave = (req,res) => {
+    console.log(req.query)
+    console.log("************************************+++")
+    res.render("edit", {
+        id: req.params.id,
+        title: req.query.title,
+        rating: req.query.rating,
+        director: req.query.director,
+        actors: req.query.actors,
+        release: req.query.release,
+        score: req.query.score,
+        poster: req.query.poster
+    })
+} 
+
+exports.saveFave = (req,res) => {
+    console.log("Guardando")
+    console.log(req.params)
+    console.log(req.body)
+    console.log(req.query)
+    res.json(req.body)
+    //res.json({dato:"hola"})
 }
