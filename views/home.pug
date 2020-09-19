@@ -1,20 +1,18 @@
 html
   head
+    link(href='https://fonts.googleapis.com/css2?family=Bangers&display=swap', rel='stylesheet')
     title= title
     link(rel='stylesheet', href='./css/index.css')
   body
-    nav
-      a(href='/') Home
-      a(href='/form') Form
+    p#welcomeTitle Welcome to MovieSpot, your very own personal Movie Database!
     section#container
       h1= message
-        p= "Search for a movie by title:"
-        input#userInput(type='text') 
+      input#userInput(type='text') 
       br
       #homeButtons
         button#searchButton(type='submit') Search
-        button#homeButton(type='submit') Home
-    h2 Your favorite films:
-    #faveFilmSect
-      script(src="script.js" defer)
-
+        button#homeButton(type='submit') Create
+    div#faveContainer
+      h2 Your favorite films:
+      #faveFilmSect
+  script(src="script.js" defer)

@@ -6,11 +6,12 @@
 
 body{
     height: 100%;
-    width: fit-content;
+    width: 100vmax;
     margin: 0px;
     background-color: rgb(175,0,42);
     display: flex;
     flex-direction: column;
+    text-align: center;
 }
 #container {
     height: 200px;
@@ -50,11 +51,14 @@ nav a {
     padding: 10px;
     border: black 1px solid;
     border-radius: 25px;
-    background-color: cadetblue;
     text-align: center;
     padding-top: 20px;
     font-size: 20px;
     
+}
+#welcomeTitle {
+    margin: 0px;
+    padding: 20px;
 }
 
 /************SEARCH SECTION************/
@@ -72,9 +76,9 @@ nav a {
     border-radius: 20px;
 }
 #homeButtons {
+    width: 300px;
     display: flex;
-    /* justify-content: space-evenly; */
-    
+    justify-content: space-evenly;  
 }
 #container button {
     width: 70px;
@@ -85,16 +89,37 @@ nav a {
     font-size: 25px;
 }
 
-/************FAVE SECTION************/
-#faveFilmSect{
-    margin: 20px;
+/****************FONT****************/
+
+#welcomeTitle {
+    font-family: 'Bangers', cursive;
+    font-size: 50px;
+}
+h1 {
+    font-family: 'Bangers', cursive;
+    font-size: 40px;
+    margin: 0px;
     padding: 10px;
-    height: 1000px;
-    width: 70%;
+}
+
+
+/************FAVE SECTION************/
+#faveContainer {
+    margin: 0px;
+    padding: 0px;
+    border: 2px dotted white;
     display: flex;
     flex-flow: column wrap;
-    justify-content: center;
     text-align: center;
+}
+#faveFilmSect{
+    margin: 0px;
+    padding: 0px;
+    height: 800px;
+    width: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
     /* background-image: url("../img/filmLLight.jpg");
     background-repeat: no-repeat;
     background-position: center;
@@ -109,6 +134,3 @@ nav a {
     display: flex;
     flex-direction: column;
 }
-/*************@FONT FACE*************/
-
-@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');

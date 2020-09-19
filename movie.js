@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const ddbb = require('./ddbb')
 
 exports.getHome = (req, res) => {
     res.send("Hola Mundo")
@@ -32,7 +33,7 @@ exports.getDetails = (req,res) => {
 }
 exports.editFave = (req,res) => {
     console.log(req.query)
-    console.log("************************************+++")
+    console.log(req.params)
     res.render("edit", {
         id: req.params.id,
         title: req.query.title,
@@ -47,9 +48,8 @@ exports.editFave = (req,res) => {
 
 exports.saveFave = (req,res) => {
     console.log("Guardando")
-    console.log(req.params)
     console.log(req.body)
-    console.log(req.query)
+    ddbb.createMovie({name:req.body.title,director:"yo"})
     res.json(req.body)
     //res.json({dato:"hola"})
 }

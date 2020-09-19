@@ -26,7 +26,7 @@ app.use("/edit", express.static('public'));
 
 // app.get("/", movie.getHome)
 app.get('/', function (req, res) {
-  res.render('home', { message: 'Welcome to MovieSpot, your very own personal Movie Database!'});
+  res.render('home', { message: 'Search for a film by title:'});
 });
 app.get("/form", function(req,res) {
   res.render("form", {})
