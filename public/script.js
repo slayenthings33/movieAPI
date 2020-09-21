@@ -4,7 +4,7 @@
 //**********DOM LINKING***********//
 
 let searchButton = document.getElementById("searchButton");
-let homeButton = document.getElementById("homeButton");
+let createButton = document.getElementById("createButton");
 let resetFormButton = document.getElementById("resetForm");
 let submitFormButton = document.getElementById("submitForm");
 //let detailsBtn = document.getElementById("detailsBtn");
@@ -15,9 +15,8 @@ let faveSect = document.getElementById("faveSect");
 
 //**********SEARCH FILM***********//
 
-if (searchButton !== null) {
-  homeButton.addEventListener("click", goHome) //Button event listeners
-  searchButton.addEventListener("click", getInput)
+if (searchButton) {
+    searchButton.addEventListener("click", getInput) //Button event listeners
   function getInput() {   //Insert  into URL to access API
     let userInput = document.getElementById("userInput");
     titleURL = userInput.value
@@ -25,6 +24,24 @@ if (searchButton !== null) {
     location.replace(`/films/${titleURL}`)
   }
 }
+
+//**********CREATE FILM***********//
+
+if(createButton) {
+  createButton.addEventListener('click', createFilm)
+  function createFilm() {
+    let userInput = document.getElementById("userInput");
+    titleURL = userInput.value
+    location.replace(`/create/${titleURL}`)
+  }
+}
+
+if(editFave) {
+
+}
+
+
+//**********HOME PAGE***********//
 
 function goHome() {  //Refresh home page
   location.replace("/")
@@ -76,7 +93,7 @@ function editFave(pos) {
   console.log(arr2edit[pos])
   location.replace(`edit/${pos}?title=${arr2edit[pos].Title}&release=${arr2edit[pos].Released}&rating=${arr2edit[pos].filmRating}&director=${arr2edit[pos].Director}&actors=${arr2edit[pos].Actors}&score=${arr2edit[pos].Score}&poster=${arr2edit[pos].Poster}`) //pos = onclick template string above
 }
-if(document.getElementById('editFave')!=null)
+if(document.getElementById('editFave'))
 document.getElementById('editFave').addEventListener('click', (e)=>{
   e.preventDefault();
   let array3edit = JSON.parse(localStorage.getItem("faveFilms"));
@@ -96,6 +113,4 @@ document.getElementById('editFave').addEventListener('click', (e)=>{
     array3edit[id] = editedMovie;
     localStorage.setItem('faveFilms', JSON.stringify(array3edit))
     location.replace('/')
-
-
 })

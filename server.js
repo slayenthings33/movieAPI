@@ -13,46 +13,44 @@ const fetch = require('node-fetch');
 const { response } = require("express");
 const bodyParser = require('body-parser');
 
+//***********MIDDLEWARE************//
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
-
-app.set("views", "./views") //Where to read to pug
-app.set("view engine", "pug") //View generating motor
-
 app.use(express.static('public'));
 app.use("/films",express.static('public'));
 app.use("/details", express.static('public'));
 app.use("/edit", express.static('public'));
+app.use("/create", express.static('public'))
 
-// app.get("/", movie.getHome)
+//***********VIEW ENGINE************//
+
+app.set("views", "./views") //Where to read to pug
+app.set("view engine", "pug") //View generating motor
+
+//***********ROUTES************//
+
+// HOME PAGE
 app.get('/', function (req, res) {
   res.render('home', { message: 'Search for a film by title:'});
 });
-app.get("/form", function(req,res) {
-  res.render("form", {})
-})
+// CREATE MOVIE PAGE
+app.get('/create', function(req,res) {
+  res.render("edit", { message: 'Create your own Motion Picture!'});
+});
+// SEARCH MOVIE RESULT PAGE
 app.get("/details/:id", movie.getDetails);
 // app.get("*", films.getError);
-app.get("/edit/:id", movie.editFave)
-
-
-
+// EDIT MOVE RESULTS PAGE 
+app.get("/edit/:id", movie.saveChanges)
+// CREATE MOVE RESULTS PAGE 
+app.get('/create', movie.createMovie)
 //  when user enters movie title, call function getTitle
 //  app.get("/api/films/:title?", movie.getTitle)
 //when url reads "/films/:title -> render this...
-app.get('/films/:title', function (req, res) { //API fetch
-  fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=8f00377f&t=${req. params.title}`)
-  .then(function(response) { //returns a JSON of requested film
-    return response.json();
-  }) 
-  .then(function(data) {
-    res.render('film', {  //render film.pug with this data from API
-     movieName:data.Title,movie: data.Title, released: data.Released, director: data.Director, rating: data.Ratings[0].Value, route: data.Poster, actors: data.Actors, rated: data.Rated});
-      
-    }).catch(console.log("error"))
-  });
+app.get('/films/:title', movie.getFilmAPI);
 
-app.post("/films/save",movie.saveFave)
+app.post("/films/save",movie.saveFave);
 
 app.listen(port, () => {
   console.log(`You are connected to: ${port}`)
