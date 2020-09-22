@@ -11,20 +11,7 @@ const connect = async() => {
   return client;
 }
 
-// CREATE CLIENT
-exports.createClient = async(movie) => {
-  client = await connect();
-  const result = await result
-  .db("movieDB")
-  .collection("movies")
-  .insertOne(movie)
-  console.log(result);
-  console.log(`${result} was added to the database!`);
-  // return result;
-}
-
 // CREATE COLLECTION 
-
 
 exports.createMovie = async (movie) => {
     client = await connect();
@@ -34,6 +21,39 @@ exports.createMovie = async (movie) => {
     .insertOne(movie);
     console.log(`New listing created with the following id: ${result.insertedId}`);
 }
+
+//FIND FILM IN COLLECTION
+
+exports.getMovieDetails = async (title) => {
+  const client = await connect();
+  result = await client
+    .db("movieDB")
+    .collection("movies")
+    .findOne({title:name});
+  console.log(result)
+  if(result) {
+    console.log(`The film ${title} has been found in the collection.`)
+    return result;
+  } else {
+    return null
+  }
+}
+
+//FIND VARIOUS FILMS IN COLLECTION
+
+exports.getFilmsDetail = async () => {
+  const client = await connect();
+  result = await client
+     .db("moviedb")
+     .collection("peliculas")
+     .find()
+     .toArray();
+  if (result) {
+    return result;
+} else {
+     return null
+   }
+ };
 
 // const connect = async () => { 
 // const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })

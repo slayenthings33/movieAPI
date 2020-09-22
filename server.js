@@ -19,9 +19,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use("/films",express.static('public'));
-app.use("/details", express.static('public'));
-app.use("/edit", express.static('public'));
-app.use("/create", express.static('public'))
+app.use("/films/details", express.static('public'));
+app.use("/films/edit", express.static('public'));
+app.use("/films/create", express.static('public'))
 
 //***********VIEW ENGINE************//
 
@@ -31,26 +31,25 @@ app.set("view engine", "pug") //View generating motor
 //***********ROUTES************//
 
 // HOME PAGE
-app.get('/', function (req, res) {
-  res.render('home', { message: 'Search for a film by title:'});
-});
+app.get('/', movie.getHome);
+
 // CREATE MOVIE PAGE
-app.get('/create', function(req,res) {
-  res.render("edit", { message: 'Create your own Motion Picture!'});
-});
+app.get('/films/create', movie.createMovie)
+
 // SEARCH MOVIE RESULT PAGE
-app.get("/details/:id", movie.getDetails);
+app.get("/films/details/:id", movie.getDetails);
+
 // app.get("*", films.getError);
 // EDIT MOVE RESULTS PAGE 
-app.get("/edit/:id", movie.saveChanges)
-// CREATE MOVE RESULTS PAGE 
-app.get('/create', movie.createMovie)
+app.get("/films/edit/:id", movie.saveChanges) 
+
 //  when user enters movie title, call function getTitle
 //  app.get("/api/films/:title?", movie.getTitle)
 //when url reads "/films/:title -> render this...
 app.get('/films/:title', movie.getFilmAPI);
 
-app.post("/films/save",movie.saveFave);
+// SAVE FILM
+app.post("/films/save",movie.saveFave)
 
 app.listen(port, () => {
   console.log(`You are connected to: ${port}`)

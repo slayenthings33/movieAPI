@@ -1,11 +1,25 @@
 const fetch = require('node-fetch');
-const ddbb = require('./ddbb')
+const db = require('./db')
 
+
+// HOME
 exports.getHome = (req, res) => {
-    res.send("Hola Mundo")
-}
+    //  bbdd
+    // .getFilmsDetail()
+    // .then((datos)=>
+    res
+    .status(200)
+    .render("home", {
+        message: 'Search for a film by title:'
+    })
+    .catch((e)=>console.log("An error has occurred:" +e));
+  };
+
+// LOAD FORM
 exports.getForm = (req, res) => {
-    res.render("form", {"title":"hola"})
+    res
+        .status(200)
+        .render("edit", {title:""})
 }
 // exports.getTitle = (req,res) => {
 //     let title = req.params.title;
@@ -31,9 +45,11 @@ exports.getFilmAPI = (req,res) => {
 }
 //module to display in details.pug
 exports.getDetails = (req,res) => {
-    res.render("details", {
+   
+    res.status(200).render("film", {
+        //variable in pug : name in server.js generated url
         movie: req.query.title,
-        poster: req.query.src,  //variable in pug : name in server.js generated url
+        route: req.query.src,  
         movieName: req.query.title,
         rated: req.query.rated,
         director: req.query.director,
@@ -45,7 +61,7 @@ exports.getDetails = (req,res) => {
 exports.saveChanges = (req,res) => {
     console.log(req.query)
     console.log(req.params)
-    res.render("edit", {
+    res.status(200).render("edit", {
         id: req.params.id,
         title: req.query.title,
         rating: req.query.rating,
@@ -57,7 +73,7 @@ exports.saveChanges = (req,res) => {
     })
 } 
 exports.createMovie = (req,res) => {
-    res.render("edit", {})
+    res.render("edit", { message: 'Create your own Motion Picture!'});
     // ddbb.createMovie(film)
 }
 exports.saveFave = (req,res) => {
