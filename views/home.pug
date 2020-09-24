@@ -14,5 +14,26 @@ html
         button#createButton(type='submit') Create
     div#faveContainer
       h2 Your favorite films:
-      #faveFilmSect
+      ul
+        each film, index in films
+          #faveItem
+          #faveText
+            #titleRow
+              b Title:
+              span=film.Title
+            #directorRow
+              b Directed by: 
+              span=film.Director
+            #releasedRow
+              b Released: 
+              span=film.Date
+            #scoreRow
+              b Score: 
+              span=film.Score
+          #favePoster
+            img#poster(src=Poster)
+            #faveButns
+              button#detailsBtn(onclick=`getDetails("${film.Title}")`) Details
+              button#editBtn(onclick=`editFave('${i}')`) Edit
+              button(id=`deleteBtn${index}`, onclick=`deleteFilm("${film.Title}")`) Delete
   script(src="script.js" defer)

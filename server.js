@@ -9,8 +9,6 @@ const express = require("express")
 const app = express()
 const port = 3000
 const movie = require("./movie")
-const fetch = require('node-fetch');
-const { response } = require("express");
 const bodyParser = require('body-parser');
 
 //***********MIDDLEWARE************//
@@ -32,24 +30,31 @@ app.set("view engine", "pug") //View generating motor
 
 // HOME PAGE
 app.get('/', movie.getHome);
-
 // CREATE MOVIE PAGE
-app.get('/films/create', movie.createMovie)
+app.get('/films/create', movie.createMovie);
 
-// SEARCH MOVIE RESULT PAGE
-app.get("/films/details/:id", movie.getDetails);
+// SEARCH MOVIE
+//  
+//  app.get("/api/films/:title?", movie.getTitle)
+//when url reads "/films/:title -> render this...
+app.get('/films/:title', movie.getFilmAPI);
+
+// MOVIE DETAILS RESULT PAGE
+app.get("/films/details/:title", movie.getDetails);
 
 // app.get("*", films.getError);
 // EDIT MOVE RESULTS PAGE 
 app.get("/films/edit/:id", movie.saveChanges) 
 
-//  when user enters movie title, call function getTitle
-//  app.get("/api/films/:title?", movie.getTitle)
-//when url reads "/films/:title -> render this...
-app.get('/films/:title', movie.getFilmAPI);
+// ----------> POST ROUTES
 
-// SAVE FILM
-app.post("/films/save",movie.saveFave)
+// SAVE FILM to DB from film.pug
+app.post("/films/save", movie.saveFave);
+
+// DELETE FILM from DB from home.pug
+app.post("/films/deletedb", movie.postDeleteFilm);
+
+
 
 app.listen(port, () => {
   console.log(`You are connected to: ${port}`)

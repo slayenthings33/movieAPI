@@ -6,13 +6,13 @@ nav
   a(href='/form') Form
 h1=movie
 p  
-  img#poster(src=poster)
+  img#poster(src=route)
 p
   | You searched for 
   span#movie=movieName
 p
   | This film is rated 
-  span#rated=rated
+  span#rated=rating
 p
   | The director is 
   span#director=director
@@ -23,9 +23,8 @@ p
   | The film was released in 
   span#released=released
 p
-  | This film received a rating of 
-  span#rating=rating
+  | This film received a score of 
+  span#score=score
 
 //- button#favoriteButton(type='submit') Favorite
 //- button#homeBtn(type='submit') Home
-script(src='script2.js')

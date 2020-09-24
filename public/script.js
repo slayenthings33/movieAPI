@@ -1,27 +1,18 @@
-// const express = require("express");
-// const bodyParser = require("body-parser");
-
 //**********DOM LINKING***********//
 
 let searchButton = document.getElementById("searchButton");
 let createButton = document.getElementById("createButton");
 let resetFormButton = document.getElementById("resetForm");
 let submitFormButton = document.getElementById("submitForm");
-//let detailsBtn = document.getElementById("detailsBtn");
-//let editBtn = document.getElementById("editBtn");
-//let deleteBtn= document.getElementById("deleteBtn");
 let faveSect = document.getElementById("faveSect");
-
 
 //**********SEARCH FILM***********//
 
 if (searchButton) {
-    searchButton.addEventListener("click", getInput) //Button event listeners
+  searchButton.addEventListener("click", getInput) //Button event listeners
   function getInput() {   //Insert  into URL to access API
-    let userInput = document.getElementById("userInput");
-    titleURL = userInput.value
-    console.log(titleURL);
-    location.replace(`/films/${titleURL}`)
+  let userInput = document.getElementById("userInput");
+  location.replace(`/films/${userInput.value}`)
   }
 }
 
@@ -30,68 +21,53 @@ if (searchButton) {
 if(createButton) {
   createButton.addEventListener('click', createFilm)
   function createFilm() {
-    let userInput = document.getElementById("userInput");
-    titleURL = userInput.value
-    location.replace(`/create/${titleURL}`)
+    location.replace(`/films/create/`)
   }
 }
-
-if(editFave) {
-
-}
-
 
 //**********HOME PAGE***********//
 
 function goHome() {  //Refresh home page
   location.replace("/")
-} 
-
-//**********DISPLAY FAVES***********//
-
-function showFaves() {
-  let faveSect = document.getElementById("faveFilmSect");
-  let parsedFaves = JSON.parse(localStorage.getItem("faveFilms"));
-    for(let i=0; i<parsedFaves.length; i++) {
-    if(parsedFaves !== null) { 
-      let faveList = `<div id="faveItem"><div id="titleRow"><b>Title: </b> ${parsedFaves[i].Title}</div> <div id="directedRow"><b>Directed by: </b>${parsedFaves[i].Director}</div> <div id="releasedRow"><b>Released: </b> ${parsedFaves[i].Released}</div> <div id="faveButns"><button id="detailsBtn" onclick="getDetails(${i})">Details</button><button id="editBtn" onclick="editFave('${i}')">Edit</button><button id="deleteBtn${i}" onclick="deleteFilm(${i})">Delete</button></div></div>`;
-      // ${i}?title=${parsedFaves[i].Title} <-- onclick()
-      faveSect.innerHTML += faveList ;
-    } else {
-      faveSect.innerHTML = "";
-    }
-  }
 }
-
-if(document.getElementById("faveFilmSect")) showFaves(); //only execute showFaves when faveFilmSect exists
-
 
 //**********BUTTON FUNCTIONS***********//
 
-// deleteBtn.addEventListener("click", eraseFilm);
-function deleteFilm(pos) {
-  // console.log(typeof(localStorage.getItem("faveFilms"))); <stored as string
-  let faveFilmsParsed = JSON.parse(localStorage.getItem("faveFilms")); 
-  // console.log(typeof(faveFilmsParsed)); <- converted to object
-  faveFilmsParsed.splice(pos,1);
-  let verifyDelete = confirm("Are you absolutely POSITIVE you want to remove this film from your list of Favorites?")
-  if(verifyDelete) {
-    localStorage.setItem("faveFilms", JSON.stringify(faveFilmsParsed));
-    window.location.reload();  
-  } 
+function deleteFilm(title) {
+  let eraseFilm = {
+    "Title": title
+  }
+
+  fetch('/films/deletedb', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8'},
+    body:JSON.stringify(eraseFilm)
+  })
+    .then((respuesta)=>{
+      console.log("The film was deleted successfully")
+      console.log(respuesta)
+      console.log("replace location")
+      location.replace("/")
+      })
+    .catch((e)=>{
+      console.log("error"+e)
+    });
 };
 
-
-function getDetails(pos){
-  let array = JSON.parse(localStorage.getItem("faveFilms"));
-  // console.log(array[pos].Title);
-  location.replace(`/films/details/${pos}?title=${array[pos].Title}&released=${array[pos].Released}&director=${array[pos].Director}&rated=${array[pos].filmRating}&rating=${array[pos].Score}&src=${array[pos].Poster}&actors=${array[pos].Actors}`)
+// SEARCH FILM 
+function getDetails(title){
+  console.log("function getDetails")
+  // console.log(title);
+  let filmURL = `/films/details/${title}`;
+  location.replace(filmURL)
 }
-// editBtn.addEventListener("click", editFave);
+
 function editFave(pos) {
   let arr2edit = JSON.parse(localStorage.getItem("faveFilms")); 
   console.log(arr2edit[pos])
-  location.replace(`/films/edit/${pos}?title=${arr2edit[pos].Title}&release=${arr2edit[pos].Released}&rating=${arr2edit[pos].filmRating}&director=${arr2edit[pos].Director}&actors=${arr2edit[pos].Actors}&score=${arr2edit[pos].Score}&poster=${arr2edit[pos].Poster}`) //pos = onclick template string above
+  location.replace(`/films/edit/${pos}?title=${arr2edit[pos].Title}&release=${arr2edit[pos].Released}&rating=${arr2edit[pos].filmRating}&director=${arr2edit[pos].Director}&actors=${arr2edit[pos].Actors}&score=${arr2edit[pos].Score}&poster=${arr2edit[pos].Poster}`) 
+  //pos = onclick template string above
 }
 
 if(document.getElementById('editFave')) {
@@ -116,9 +92,3 @@ if(document.getElementById('editFave')) {
     location.replace('/')
   })
 }
-// if(location.pathname = "/create") {
-//   document.getElementById('editFave').addEventListener('click', createMovie);
-//   function createMovie() {
-
-//   }
-// }

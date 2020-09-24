@@ -2,16 +2,17 @@ const MongoClient = require("mongodb").MongoClient;
 const url = "mongodb://localhost:27017/movieDB";
 // const dbo = db.db("movieDB"); //ACCESS DDBB
 
-//Create DDBB
+//Connect to DB
 const connect = async() => {
-  const client = await MongoClient.connect(url, { useNewUrlParser: true,  useUnifiedTopology: true}) 
-  .catch(err => {console.log(err);
-  })
-  console.log("Database Created");
-  return client;
+const client = await MongoClient.connect(url, { useNewUrlParser: true,  useUnifiedTopology: true}) 
+.catch(err => {console.log(err);
+})
+console.log("connected to db");
+return client;
 }
 
 // CREATE COLLECTION 
+//Method to create movie documents in DB from 
 
 exports.createMovie = async (movie) => {
     client = await connect();
@@ -24,15 +25,16 @@ exports.createMovie = async (movie) => {
 
 //FIND FILM IN COLLECTION
 
-exports.getMovieDetails = async (title) => {
+exports.getMovieDetails = async (pos) => {
   const client = await connect();
+  console.log("++++++++++++++")
+  console.log(pos)
   result = await client
     .db("movieDB")
     .collection("movies")
-    .findOne({title:name});
-  console.log(result)
+    .findOne({Title: pos});
   if(result) {
-    console.log(`The film ${title} has been found in the collection.`)
+    console.log(`The film ${pos} has been found in the collection.`)
     return result;
   } else {
     return null
@@ -41,29 +43,26 @@ exports.getMovieDetails = async (title) => {
 
 //FIND VARIOUS FILMS IN COLLECTION
 
-exports.getFilmsDetail = async () => {
+exports.getAllFilms = async () => {
   const client = await connect();
   result = await client
-     .db("moviedb")
-     .collection("peliculas")
+     .db("movieDB")
+     .collection("movies")
      .find()
      .toArray();
   if (result) {
     return result;
-} else {
+  } else {
      return null
    }
  };
 
-// const connect = async () => { 
-// const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
-//     .catch(err => { console.log(err); });
-//     return client;
-// }
-
-
-//Read
-
-
-
-
+// DELETE FILM FROM COLLECTION
+exports.deleteFilmDoc = async (data) => {
+  const client = await connect();
+  result = await client
+    .db("movieDB")
+    .collection("movies")
+    .deleteOne({Title: data.Title})
+  return result;
+}

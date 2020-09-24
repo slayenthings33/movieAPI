@@ -8,22 +8,25 @@ p
 img#poster(src=route)
 p
   | You searched for 
-  span#movie=movieName
+  span=movieName
 p
   | This film is rated 
-  span#rated=rated
+  span=rated
 p
   | The director is 
-  span#director=director
+  span=director
 p
   | Main actors include 
-  span#actors=actors
+  span=actors
+p
+  | Synopsis: 
+  span=plot
 p
   | The film was released in 
-  span#released=released
+  span=released
 p
   | This film received a rating of 
-  span#rating=rating
+  span=rating
 button#favoriteButton(type='submit') Favorite
 script(src='script2.js')
-script(src='script.js')
+//- script(src='script.js')

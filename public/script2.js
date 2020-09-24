@@ -4,35 +4,30 @@ let favoriteButton = document.getElementById("favoriteButton");
 // import {importantData} from './script';
 // let importantData = importantData();
 
-if(favoriteButton !== null) {
-  favoriteButton.addEventListener("click", uploadLocal)
-function uploadLocal() {
-    let movieName=document.getElementById("movie")
-    let releaseDate=document.getElementById("released")
-    let director=document.getElementById("director")
-    let score=document.getElementById("rating")
-    let poster=document.getElementById("poster")
-    let ratingFilm = document.getElementById("rated")
-    let actors = document.getElementById("actors")
-
-    // console.log(movieName.innerText);
-    let array = []; //Empty array to add films
-    let newMovie = {  //Create JSON template 
-      Title: movieName.innerText,
-      Poster: poster.src,
-      filmRating: ratingFilm.innerText,
-      Director: director.innerText,
-      Released: releaseDate.innerText,
-      Score: score.innerText,
-      Actors: actors.innerText
-    }
-    if(localStorage.getItem("faveFilms") !== null) { //if local is not empty -> parse our stringified JSON and save into array 
-      array = JSON.parse(localStorage.getItem("faveFilms"))
-    } else {
-      array= []; // if local is empty, our array is vacio
-    }
-    array.push(newMovie); //add our JSON to array
-    localStorage.setItem("faveFilms",JSON.stringify(array)) //save our array to local
-    goHome();
+  favoriteButton.addEventListener("click", ()=> {
+  console.log("function uploadData");
+  let movieData = document.getElementsByTagName("span")
+  let newMovie={
+    "Poster": document.getElementById("poster").src,
+    "Title":movieData[0].innerText,
+    "Rating": movieData[1].innerText,
+    "Director":movieData[2].innerText,
+    "Actors": movieData[3].innerText,
+    "Plot": movieData[4].innerText,
+    "Date":movieData[5].innerText,
+    "Score": movieData[6].innerText,
   }
-}
+  fetch('/films/save', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8'},
+    body:JSON.stringify(newMovie)
+      })
+      .then((response)=>{
+        console.log("Data uploaded successfully!")
+        location.replace("/");
+        console.log(response)
+      })
+    .catch((e)=>{
+      console.log("error "+e)
+      })});
