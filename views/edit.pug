@@ -1,28 +1,40 @@
+head
+  script(src='script.js' defer)
+
 body
   p#id=id
   h1= message
   div#formContainer
-    form(action="/films/save" method="POST")
+    form(action=route method="POST")
       div.formAnswer
         p Title:
-        input#title(type="text" name="title" value=title)
+        input#title(type="text" name="title" value=titleEdit)
+      br
       div.formAnswer
         p Director:
-        input#director(type="text" name="director" value=director)
+        input#director(type="text" name="director" value=directorEdit)
+      br
       div.formAnswer  
         p Released:
-        input#released(type="text" name="released" value=release)
+        input#released(type="text" name="released" value=releasedEdit)
+      br
       div.formAnswer
         p Rating:
-        input#rating(type="text" name="rating" value=rating)
+        input#rating(type="text" name="rating" value=ratingEdit)
+      br
       div.formAnswer
         p Actors:
-        input#actors(type="text" name="actors" value=actors)
+        input#actors(type="text" name="actors" value=actorsEdit)
+      br
       div.formAnswer
         p Score:
-        input#score(type="text" name="score" value=score)
+        input#score(type="text" name="score" value=scoreEdit)
+      br
       div.formAnswer
-        p Poster:
-        input#poster(type="text" name="poster" value=poster)
-    input#editFave(type="submit" value='Save')
-  script(src="script.js")
+        p Poster (insert url of desired new poster photo):
+        input#poster(type="text" name="poster" value=posterEdit)
+      br
+      div.formAnswer
+        p Synopsis:
+        input#poster(type="text" name="plot" value=plotEdit)
+    input#updateFilmBtn(type="submit" value='Save')

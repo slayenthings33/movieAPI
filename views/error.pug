@@ -1,31 +1,13 @@
-form#login(action='/submit-form' method="POST")
-      div#data
-        label Título: 
-        input#title(type='text', name= "title", placeholder='' value=Título)
-        br
-        br
-        label  Director:
-        input#director(type='text', name= "director", placeholder='' value=Director)
-        br
-        br
-        label  Año de estreno:
-        input#year(type='number', name= "year", placeholder='' value=Year)
-        br
-        br
-        label  Actores:
-        input#director(type='text', name= "director", placeholder='' value=Actors)
-        br
-        br
-        label  Género:
-        input#director(type='text', name= "director", placeholder='' value=Genre)
-        br
-        br
-        label  Premios:
-        input#director(type='text', name= "director", placeholder='' value=Awards)
-        br
-        br
-        label  Duración:
-        input#director(type='text', name= "director", placeholder='' value=Runtime)
-        br
-        br
-        input#submit(type='submit' value="Guardar")
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Document
+  body
+    #errorContainer
+    h1=message
+    img#errorPic(src='./public/img/turnBack.jpg' alt='wrong way sign')
+    span#404=message2
+
+

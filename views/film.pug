@@ -1,5 +1,6 @@
 head
   title
+  script(src='./script2.js' defer)
 nav
   a(href='/') Home
   a(href='/form') Form
@@ -8,25 +9,28 @@ p
 img#poster(src=route)
 p
   | You searched for 
-  span=movieName
+  span.details=movieName
+  |  which is rated  
+  span.details=rated
+  |  and has a total runtime of 
+  span.details=runtime
+  | .
+  |  The genre(s) of this film are: 
+  span.details=genre
+  | .
 p
-  | This film is rated 
-  span=rated
-p
-  | The director is 
-  span=director
-p
-  | Main actors include 
-  span=actors
-p
-  | Synopsis: 
-  span=plot
+  | The film is directed by  
+  span.details=director
+  |  and features actors such as 
+  span.details=actors
+  | .
 p
   | The film was released in 
-  span=released
+  span.details=released
+  |  and currently boasts and IMDb score of   
+  span.details=score
+  | .
 p
-  | This film received a rating of 
-  span=rating
+  | Synopsis: 
+  span.details=plot
 button#favoriteButton(type='submit') Favorite
-script(src='script2.js')
-//- script(src='script.js')
