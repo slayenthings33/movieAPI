@@ -53,7 +53,7 @@ app.post("/films/save", movie.saveFave);
 app.post("/films/deletefilm", movie.postDeleteFilm);
 
 // EDIT FILM from edit.pug TO db 
-app.post("/films/editfilm", movie.postEditFilm);
+app.post("/films/postEditFilm", movie.postEditFilm);
 
 // EVERYTHING ELSE 
 // app.get('*', movie.errorPage);

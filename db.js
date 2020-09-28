@@ -67,31 +67,33 @@ exports.deleteFilmDoc = async(data) => {
 
 exports.updateFilmDoc = async(_id, editedFilm) => {
   const client = await connect();
+  console.log("****************")
+  console.log(editedFilm)
+  console.log("++++++++++++++++")
+  console.log(editedFilm.title)
   result = await client
     .db("movieDB")
     .collection("movies")
     .updateOne(
       {"_id": ObjectID(_id) }, // Filtered
       { $set: {
-        "Title": editedFilm.Title,
-        "Released": editedFilm.Released,
-        "Genre": editedFilm.Genre,
-        "Director": editedFilm.Director,
-        "Actors": editedFilm.Actors,
-        "Plot": editedFilm.Plot,
-        "Rating": editedFilm.Rating,
-        "Score": editedFilm.Score,
+        "Title": editedFilm.title,
+        "Released": editedFilm.released,
+        "Genre": editedFilm.genre,
+        "Director": editedFilm.director,
+        "Actors": editedFilm.actors,
+        "Plot": editedFilm.plot,
+        "Rating": editedFilm.rating,
+        "Score": editedFilm.score,
         "Poster": editedFilm.route
       }}, //UPDATED
       {upsert: true}
-    );
-  console.log(`${result.matchedCount} documentos que coinciden con los criterios de consulta.`);
-  if (result.upsertedCount > 0) {
+      );
+  console.log(`${result.matchedCount} documents which coincide with request.`);
+  if (result.upsertedCount > 0) { 
       console.log(`A document was created with id: ${result.upsertedId._id}`);
       return result;
-  } else {
+    } else {
       console.log(`${result.modifiedCount} could not be modified.`);
   }
-    console.log(editedFilm) 
-    console.log(_id);
-  }
+}

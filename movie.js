@@ -97,8 +97,8 @@ exports.getEditFilm = (req,res) => {
         console.log("getEditFilm module")
         console.log(data)
         res.render("edit", {
-            route: "/films/edit",
-            message: "Edit your favorite Film!",
+            route: "/films/postEditFilm",
+            message: "Edit your favorite Film!!",
             _id: data._id,
             posterEdit: data.Poster,  
             titleEdit: data.Title,
@@ -146,32 +146,16 @@ exports.postDeleteFilm = (req,res) => {
     // console.log(req.body)
 }
 
-// exports.edit = (req,res) => {
-//     let movie = req.params.title;
-//     db  
-//         .getMovieDetails(movie)
-//         .then((data) => {
-//             res.render("edit", {
-//                 movieName: data.Title,
-//                 released: data.Year,
-//                 director: data.Director,
-//                 actors: data.Actors,
-//                 genre: data.Genre,
-//                 awards: data.Awards,
-//                 runtime: data.Runtime,
-//                 route: data.Poster, 
-//                 rating: data.imdbRating
-//             })
-//         }).catch((e)=>console.log(e))
-// }
-
 // POST METHOD TO EDIT FROM DB 
 exports.postEditFilm = (req,res) => {
-    let _id = req.body.id;
+    console.log(req.body)
+    let id = req.body._id;
     console.log("*********UPLOAD FORM DATA***************");
-    console.log(_id);
-    db.updateFilmDoc(_id, req.body)
+    console.log(id);
+    db.updateFilmDoc(id, req.body)
     .then(()=> {
-        res.status(200)
-    }).catch((e)=> console.log("ocurrió un error inesperad:;"+e))
+        res
+        .status(200)
+        .redirect("/");
+    }).catch((e)=> console.log("An unexpected error has occurred:"+e))
 }

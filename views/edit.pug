@@ -2,39 +2,39 @@ head
   script(src='script.js' defer)
 
 body
+  nav
+  a#homeBtn(href='/') Return Home
   p#id=id
   h1= message
   div#formContainer
     form(action=route method="POST")
+      div.formAnswer#idContainer
+        p#id=_id
       div.formAnswer
         p Title:
         input#title(type="text" name="title" value=titleEdit)
-      br
       div.formAnswer
         p Director:
         input#director(type="text" name="director" value=directorEdit)
-      br
       div.formAnswer  
         p Released:
         input#released(type="text" name="released" value=releasedEdit)
-      br
       div.formAnswer
         p Rating:
         input#rating(type="text" name="rating" value=ratingEdit)
-      br
       div.formAnswer
         p Actors:
         input#actors(type="text" name="actors" value=actorsEdit)
-      br
       div.formAnswer
         p Score:
         input#score(type="text" name="score" value=scoreEdit)
-      br
       div.formAnswer
         p Poster (insert url of desired new poster photo):
         input#poster(type="text" name="poster" value=posterEdit)
-      br
       div.formAnswer
         p Synopsis:
-        input#poster(type="text" name="plot" value=plotEdit)
-    input#updateFilmBtn(type="submit" value='Save')
+        input#plot(type="text" name="plot" value=plotEdit)
+      div.formAnswer
+        p Genre:
+        input#genre(type="text" name="score" value=genreEdit)
+      input#updateFilmBtn(type="submit" value='Save')
