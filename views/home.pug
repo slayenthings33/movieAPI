@@ -9,31 +9,29 @@ html
       h1= message
       input#userInput(type='text') 
       br
-      #homeButtons
-        button#searchButton(type='submit') Search
-        button#createButton(type='submit') Create
+      button#searchButton(type='submit') Search
     div#faveContainer
       h2 Your favorite films:
       ul
-        each film, index in films
-          #faveItem
-            #faveText
-              #titleRow
-                b Title: 
-                span=film.Title
-              #directorRow
-                b Directed by: 
-                span=film.Director
-              #releasedRow
-                b Released: 
-                span=film.Date
-              #scoreRow
-                b Score: 
-                span=film.Score
-            #favePoster
-            img#poster(src=Poster)
-            #faveButns
-              button#detailsBtn(onclick=`getDetails("${film.Title}")`) Details
-              button#editBtn(onclick=`editFilmPage('${film.Title}')`) Edit
-              button(id=`deleteBtn${index}`, onclick=`deleteFilm("${film.Title}")`) Delete
+      each film, index in films
+        #faveItem
+          #faveText
+            #titleRow
+              b Title: 
+              span=film.Title
+            #directorRow
+              b Directed by: 
+              span=film.Director
+            #releasedRow
+              b Released: 
+              span=film.Date
+            #scoreRow
+              b Score: 
+              span=film.Score
+          #favePoster
+          img#poster(src=Poster)
+          #faveButns
+            button#detailsBtn(onclick=`getDetails("${film.Title}")`) Details
+            button#editBtn(onclick=`editFilmPage('${film.Title}')`) Edit
+            button(id=`deleteBtn${index}`, onclick=`deleteFilm("${film.Title}")`) Delete
   script(src="script.js" defer)
